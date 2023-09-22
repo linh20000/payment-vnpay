@@ -32,8 +32,16 @@ trait RequestEndpoint
      *
      * @return string
      */
+    protected $testMode = false;
+    public function setTestMode($status) {
+        $this->testMode = $status;
+    }
     protected function getEndpoint(): string
     {
         return $this->getTestMode() ? $this->testEndpoint : $this->productionEndpoint;
+    }
+    public function getTestMode()
+    {
+        return $this->testMode;
     }
 }
