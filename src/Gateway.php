@@ -47,7 +47,7 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
-            'vnp_Version' => '2.0.0',
+            'vnp_Version' => '2.0.1',
         ];
     }
 
