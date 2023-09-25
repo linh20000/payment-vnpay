@@ -36,7 +36,7 @@ class Signature
      * @param  string  $hashType
      * @throws InvalidArgumentException
      */
-    public function __construct(string $hashSecret, string $hashType = 'sha256')
+    public function __construct(string $hashSecret, string $hashType = 'sha512')
     {
         if (! $this->isSupportHashType($hashType)) {
             throw new InvalidArgumentException(sprintf('Hash type: `%s` is not supported by VNPay', $hashType));
@@ -57,7 +57,7 @@ class Signature
         ksort($data);
         $dataSign = $this->hashSecret.urldecode(http_build_query($data));
 
-        return hash($this->hashType, $dataSign);
+        return hash_hmac($this->hashType, $dataSign);
     }
 
     /**
@@ -82,6 +82,6 @@ class Signature
      */
     protected function isSupportHashType(string $type): bool
     {
-        return 0 === strcasecmp($type, 'md5') || 0 === strcasecmp($type, 'sha256');
+        return 0 === strcasecmp($type, 'md5') || 0 === strcasecmp($type, 'sha512');
     }
 }
