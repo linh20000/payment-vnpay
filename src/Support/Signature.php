@@ -57,7 +57,7 @@ class Signature
         ksort($data);
         $dataSign = $this->hashSecret.urldecode(http_build_query($data));
 
-        return hash_hmac($this->hashType, $dataSign);
+        return hash_hmac($this->hashType, $dataSign,  $this->hashSecret);
     }
 
     /**
