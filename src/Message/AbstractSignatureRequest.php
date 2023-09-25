@@ -53,7 +53,7 @@ abstract class AbstractSignatureRequest extends AbstractRequest
 
         $parameters = $this->getParameters();
         $parameters['vnp_SecureHash'] = $this->generateSignature(
-            $parameters['vnp_SecureHashType'] = $this->getSecureHashType() ?? 'sha256'
+            $parameters['vnp_SecureHashType'] = $this->getSecureHashType() ?? 'sha512'
         );
 
         unset($parameters['vnp_HashSecret'], $parameters['testMode']);
